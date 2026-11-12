@@ -1,16 +1,16 @@
-# Capturas de ComunicAxion Service Manager
+# Evidencia visual — Orqentia
 
-Pendientes de incorporar capturas **reales y revisadas** del prototipo.
+Estas capturas documentan interfaces **reales del prototipo**, desarrollado por ComunicAxion. Se prepararon para presentación pública ocultando identificadores personales y datos operativos.
 
-## Capturas sugeridas
+| Captura | Pantalla | Evidencia |
+| --- | --- | --- |
+| [01-dashboard.png](01-dashboard.png) | Centro de operaciones | Estados de órdenes, reparación, entrega y seguimiento administrativo |
+| [02-nueva-cotizacion.png](02-nueva-cotizacion.png) | Nueva cotización | Selección de recepción y preparación del presupuesto |
 
-| Archivo sugerido | Pantalla |
-| --- | --- |
-| `01-dashboard.png` | Tablero operativo, sin datos reales |
-| `02-clientes.png` | Gestión de clientes con registros ficticios |
-| `03-activos.png` | Activos/equipos de prueba |
-| `04-recepciones.png` | Flujo de recepción y estados |
-| `05-servicio.png` | Seguimiento de reparación |
-| `06-pendientes.png` | Excepciones: terminados sin cargo o pendientes |
+La presencia de una opción en la interfaz no acredita por sí sola que el flujo esté terminado, desplegado o validado en producción.
 
-**Antes de subir:** comprobar ausencia de nombres, correos, teléfonos, números de serie, folios reales, URLs internas y credenciales. No publicar código fuente ni bases de datos.
+## Futuras capturas opcionales
+
+Se pueden añadir pantallas de clientes, activos, recepciones y órdenes de servicio, exclusivamente con datos ficticios o anonimizados. No publicar nombres, correos, teléfonos, números de serie, folios reales, rutas internas ni credenciales.
+
+[Volver al README principal](../README.md).
