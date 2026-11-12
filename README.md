@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1220,50:12395D,100:087F8C&height=205&section=header&text=ComunicAxion%20Service%20Manager&fontSize=31&fontColor=ffffff&desc=Technical%20Service%20Management%20%7C%20Business%20Workflows%20%7C%20Full-Stack&descAlignY=66&descSize=15&animation=fadeIn" width="100%" alt="ComunicAxion Service Manager — gestión de talleres de servicio técnico" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1220,50:12395D,100:087F8C&height=205&section=header&text=Orqentia&fontSize=31&fontColor=ffffff&desc=Technical%20Service%20Management%20%7C%20Business%20Workflows%20%7C%20Full-Stack&descAlignY=66&descSize=15&animation=fadeIn" width="100%" alt="Orqentia — gestión de talleres de servicio técnico" />
 </p>
 
 <p align="center">
@@ -14,11 +14,11 @@
   <a href="#evidencia-visual"><img src="https://img.shields.io/badge/View-Visual%20Evidence-087F8C?style=for-the-badge" alt="Ir a evidencia visual" /></a>
 </p>
 
-# ComunicAxion Service Manager
+# Orqentia — Gestión inteligente de servicios técnicos
 
 > **Software empresarial · Desarrollo full-stack · Caso de estudio de producto.**
 
-**ComunicAxion Service Manager** es un sistema en desarrollo para organizar el ciclo de atención de un taller de servicio técnico: desde la recepción de un equipo hasta el diagnóstico, la cotización, la autorización, el cobro y la entrega.
+**Orqentia**, desarrollado por **ComunicAxion**, es un sistema en desarrollo para organizar el ciclo de atención de un taller de servicio técnico: desde la recepción de un equipo hasta el diagnóstico, la cotización, la autorización, el cobro y la entrega.
 
 **Alcance de este repositorio:** documentación pública del proyecto y su arquitectura. **No contiene código fuente, información de clientes ni datos operativos del taller.**
 
@@ -77,9 +77,21 @@ El diseño separa presentación, API, lógica de negocio y persistencia para fac
 
 ## Evidencia visual
 
-Las capturas del sistema se incorporarán aquí cuando se revisen para excluir datos personales, nombres de clientes, teléfonos, números de serie y otros identificadores. **No se utilizan imágenes generadas para simular pantallas funcionales.**
+Las siguientes capturas corresponden a pantallas **reales del prototipo Orqentia**, preparadas para portafolio con datos personales y operativos ocultos. No son diseños conceptuales ni imágenes generadas.
 
-[Consultar guía de capturas](screenshots/README.md).
+### 1. Centro de operaciones del taller
+
+![Orqentia — dashboard de órdenes, reparaciones y seguimiento administrativo](screenshots/01-dashboard.png)
+
+El tablero reúne estados de trabajo como órdenes abiertas, por revisar, en reparación, en espera y listas para entregar. También presenta indicadores de cotizaciones, autorizaciones, cargos y pendientes de cobro. La captura documenta la interfaz, no certifica que todos los recorridos estén completos.
+
+### 2. Preparación de cotizaciones
+
+![Orqentia — interfaz para crear una cotización desde una recepción](screenshots/02-nueva-cotizacion.png)
+
+Pantalla para iniciar una cotización, con opciones desde una recepción o sin recepción y búsqueda/selección del registro correspondiente.
+
+> **Privacidad:** las capturas públicas fueron revisadas y modificadas para ocultar identificadores personales y datos operativos. Los valores visibles no deben interpretarse como métricas comerciales públicas.
 
 ## Decisiones de producto e ingeniería
 
