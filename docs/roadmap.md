@@ -1,27 +1,31 @@
-# Hoja de ruta — ComunicAxion Service Manager
+# Orqentia — Hoja de ruta
 
-La siguiente lista expresa **prioridades propuestas**, no compromisos de entrega ni funcionalidades ya terminadas.
+Estoy desarrollando Orqentia por etapas, con la intención de validar primero los procesos esenciales de un taller antes de ampliar el producto.
 
-## Etapa 1 — Consolidación del prototipo
+## Etapa 1 — Consolidar el prototipo
 
-- Revisar el estado real de cada flujo: recepción, diagnóstico, cotización, autorización, cargo, pago y entrega.
-- Comprobar migraciones y pruebas automatizadas.
-- Revisar permisos y separación de organizaciones.
-- Validar los tableros de excepciones operativas.
+- Revisar los recorridos de recepción, diagnóstico, cotización, autorización, cargos, pagos y entrega.
+- Completar y validar las transiciones de estado necesarias.
+- Comprobar permisos y separación por organización.
+- Validar tableros y casos como «terminados sin cargo».
+- Ejecutar pruebas y migraciones sobre el estado más reciente del proyecto.
 
-## Etapa 2 — Validación en un taller
+## Etapa 2 — Validación operativa
 
-- Probar recorridos completos con datos ficticios.
-- Registrar fricciones y excepciones frecuentes.
-- Mejorar mensajes, estados y formularios según el uso.
-- Definir respaldo, recuperación y políticas de acceso.
+- Realizar pruebas de uso con datos de ensayo.
+- Identificar fricciones reales del flujo de atención.
+- Mejorar formularios, mensajes y seguimiento de excepciones.
+- Definir respaldos, recuperación y prácticas de acceso.
 
-## Etapa 3 — Producto instalable o servicio
+## Etapa 3 — Preparación como producto
 
-- Evaluar opciones de despliegue, operación y soporte.
-- Diseñar configuración inicial y alta de talleres.
-- Considerar facturación, notificaciones y reportes solo según necesidades verificadas.
+- Evaluar alternativas de instalación o distribución.
+- Simplificar la configuración inicial de talleres.
+- Priorizar reportes, notificaciones y otras funciones según necesidades comprobadas.
+- Definir los requisitos de operación y soporte.
 
-## Relación con el futuro mini ERP
+## Posible evolución
 
-Se evaluará **si conviene** mantener ComunicAxion como producto especializado o convertir parte de sus capacidades en un módulo conectado al núcleo ERP. No hay decisión ni migración completada. Cualquier cambio de stack requiere justificar costos, compatibilidad y beneficios.
+Mantengo abierta la posibilidad de que Orqentia siga como producto especializado o que algunas de sus capacidades se relacionen con un **ERP modular** futuro. Esa decisión dependerá de la evaluación técnica y de las necesidades del negocio.
+
+[← Volver al proyecto](../README.md)
