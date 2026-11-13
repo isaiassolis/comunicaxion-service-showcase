@@ -1,10 +1,10 @@
-# Arquitectura — ComunicAxion Service Manager
+# Orqentia — Arquitectura del prototipo
 
-## Estado y límites
+## Objetivo técnico
 
-Este documento describe la arquitectura conocida del prototipo. No equivale a una auditoría del código actual ni certifica disponibilidad en producción.
+Estoy construyendo Orqentia como un sistema modular para gestionar la operación de talleres de servicio técnico. Su arquitectura separa la interfaz de usuario, la API y la persistencia para facilitar el desarrollo, las pruebas y la evolución de los procesos.
 
-## Capas
+## Componentes
 
 ```mermaid
 flowchart TB
@@ -12,34 +12,42 @@ flowchart TB
   API --> ORM[SQLAlchemy]
   ORM --> DB[(SQLite local)]
   MIG[Alembic] -. Migraciones .-> DB
-  TEST[Pruebas automatizadas] -. Verifican .-> UI
-  TEST -. Verifican .-> API
+  TEST[Pruebas automatizadas] -. Verificación .-> UI
+  TEST -. Verificación .-> API
 ```
 
-## Modelo conceptual
+## Modelo de negocio
 
-- **Organización:** contexto de operación y acceso.
-- **Cliente / contacto:** persona o entidad relacionada con un servicio.
-- **Activo:** equipo o dispositivo atendido.
-- **Recepción:** ingreso de un activo para atención.
-- **Servicio:** trabajo técnico y seguimiento de estado.
-- **Cotización / autorización:** condiciones y decisión del cliente.
-- **Cargo / pago / entrega:** cierre administrativo y operativo.
+El trabajo se organiza alrededor de entidades con responsabilidades diferentes:
 
-Este es un **modelo conceptual**; no asegura correspondencia uno a uno con las tablas o endpoints existentes.
+| Entidad | Propósito |
+| --- | --- |
+| **Organización** | Contexto del taller y control de acceso. |
+| **Cliente y contacto** | Personas y entidades relacionadas con la atención. |
+| **Activo** | Equipo o dispositivo que ingresa para servicio. |
+| **Recepción** | Registro del ingreso y de las condiciones de atención. |
+| **Servicio** | Trabajo técnico y seguimiento operativo. |
+| **Cotización y autorización** | Propuesta de trabajo y decisión del cliente. |
+| **Cargo, pago y entrega** | Cierre administrativo y operativo del servicio. |
 
-## Principios
+Este modelo expresa la organización funcional del producto. Los flujos se han incorporado progresivamente durante el desarrollo.
 
-1. Distinguir entidades de negocio de las pantallas que las presentan.
-2. Evolucionar la base de datos mediante migraciones controladas.
-3. Evitar que una recepción desaparezca del seguimiento antes de la entrega.
-4. Identificar explícitamente casos excepcionales como «terminado sin cargo».
-5. Conservar trazabilidad y pruebas al introducir nuevos estados.
+## Principios de ingeniería
 
-## Stack confirmado históricamente
+- **Trazabilidad:** mantener visible el estado de un equipo durante todo su proceso de atención.
+- **Separación de información:** evitar mezclar clientes, equipos, recepciones y movimientos administrativos.
+- **Control de excepciones:** identificar trabajos terminados sin cargo y otros pendientes relevantes.
+- **Evolución controlada:** introducir cambios de base de datos mediante Alembic y acompañarlos de pruebas.
+- **Operación local:** comenzar con una base SQLite y evaluar otras opciones solamente cuando el producto lo requiera.
 
-React, TypeScript, Vite, Tailwind CSS, FastAPI, SQLAlchemy, Alembic y SQLite. La propuesta de mini ERP basada en tecnologías distintas pertenece a **otro esfuerzo de diseño**, no a esta implementación.
+## Tecnologías
 
-## Evidencia y verificación pendiente
+**React, TypeScript, Vite y Tailwind CSS** en la interfaz; **Python y FastAPI** en la API; **SQLAlchemy, Alembic y SQLite** para datos y migraciones.
 
-El registro histórico señala hasta 85 pruebas backend, 29 frontend y migraciones `0001`–`0005`. Antes de presentar métricas actuales, es necesario ejecutar las pruebas sobre el último estado privado.
+En una etapa del desarrollo registré **85 pruebas de backend y 29 de frontend aprobadas**, junto con migraciones `0001` a `0005`. Estas cifras sirven como referencia histórica del avance de ingeniería.
+
+## Evolución
+
+El foco inmediato es consolidar el funcionamiento operativo del taller. Por separado, estudio un ERP modular que podría aportar ideas para futuras arquitecturas, sin cambiar por ello la implementación actual de Orqentia.
+
+[← Volver al proyecto](../README.md)
