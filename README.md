@@ -9,119 +9,110 @@
   <img src="https://img.shields.io/badge/Status-Prototype%20in%20Development-12395D?style=for-the-badge" alt="Prototipo en desarrollo" />
 </p>
 
-<p align="center">
-  <a href="https://github.com/isaiassolis"><img src="https://img.shields.io/badge/Author-Isa%C3%ADas%20Sol%C3%ADs-0B1220?style=for-the-badge&logo=github&logoColor=white" alt="Perfil del autor" /></a>
-  <a href="#evidencia-visual"><img src="https://img.shields.io/badge/View-Visual%20Evidence-087F8C?style=for-the-badge" alt="Ir a evidencia visual" /></a>
-</p>
+# Orqentia — Gestión de servicios técnicos
 
-# Orqentia — Gestión inteligente de servicios técnicos
+**Producto propio de ComunicAxion · Desarrollo full-stack · Automatización de procesos operativos**
 
-> **Software empresarial · Desarrollo full-stack · Caso de estudio de producto.**
+Estoy desarrollando **Orqentia** para organizar la operación de talleres de servicio técnico. La idea surgió de una necesidad concreta: **poder seguir cada equipo, trabajo y movimiento administrativo desde su recepción hasta su entrega** sin depender de notas dispersas, mensajes o registros separados.
 
-**Orqentia**, desarrollado por **ComunicAxion**, es un sistema en desarrollo para organizar el ciclo de atención de un taller de servicio técnico: desde la recepción de un equipo hasta el diagnóstico, la cotización, la autorización, el cobro y la entrega.
+El producto está en **desarrollo incremental**. He trabajado en su estructura de datos, API, interfaz y módulos de seguimiento, con una arquitectura que permite evolucionar el sistema a medida que validamos las necesidades del taller.
 
-**Alcance de este repositorio:** documentación pública del proyecto y su arquitectura. **No contiene código fuente, información de clientes ni datos operativos del taller.**
+## El problema que quiero resolver
 
-## El problema
+En un taller, una reparación puede pasar por recepción, revisión, diagnóstico, cotización, autorización, reparación, cargos, pagos y entrega.
 
-Un taller puede llevar el seguimiento de equipos mediante notas, mensajes y hojas de cálculo independientes. Esto dificulta conocer qué se recibió, qué trabajo está pendiente, qué reparaciones se terminaron, qué pagos faltan y qué equipos están listos para entregar.
+Cuando cada etapa se gestiona por separado es fácil perder visibilidad: equipos terminados que no se han cobrado, autorizaciones pendientes, reparaciones en espera o trabajos listos para entregar.
 
-El objetivo del producto es ofrecer un flujo trazable, con estados claros y una interfaz que reduzca las consultas manuales.
+Con Orqentia busco **centralizar esa operación**, dar claridad al estado de cada servicio y facilitar el seguimiento diario.
 
-## Flujo de negocio
+## El flujo de trabajo
+
+El producto está diseñado alrededor del ciclo de atención completo:
 
 ```mermaid
 flowchart LR
-  A[Recepción] --> B[Diagnóstico y reparación]
+  A[Recepción] --> B[Diagnóstico]
   B --> C[Cotización]
   C --> D{Autorización}
-  D -->|Aprobada| E[Trabajo y cargos]
-  D -->|Pendiente o rechazada| F[Seguimiento]
+  D -->|Aprobada| E[Reparación y cargos]
+  D -->|Pendiente| F[Seguimiento]
+  D -->|Rechazada| F
   E --> G[Pago o saldo pendiente]
   G --> H[Entrega]
 ```
 
-> Este diagrama describe el **flujo de negocio objetivo**; no implica que todas las transiciones o automatizaciones estén terminadas en la versión actual.
+*Este es el flujo de negocio que guía el desarrollo; sus componentes se incorporan y validan por incrementos.*
 
-## Componentes trabajados en el prototipo
+## Componentes del prototipo
 
-| Área | Trabajo documentado |
+| Componente | Trabajo realizado |
 | --- | --- |
-| Organizaciones y seguridad | Estructura de acceso y separación organizacional |
-| Clientes y contactos | Registro y relación con servicios |
-| Activos | Identificación de equipos atendidos |
-| Recepciones | Registro y seguimiento del ingreso |
-| Flujo operativo | Estados de reparación, cotización y entrega en desarrollo incremental |
-| Dashboard | Vista de seguimiento, incluido el caso de trabajos terminados sin cargo |
-| Cobros | Necesidad funcional de identificar cargos y pagos pendientes |
+| **Organizaciones y seguridad** | Estructura para gestionar el acceso y separar los contextos de operación. |
+| **Clientes y contactos** | Modelo para relacionar personas y empresas con los servicios. |
+| **Activos** | Identificación de equipos y dispositivos recibidos para atención. |
+| **Recepciones** | Registro del ingreso de equipos y seguimiento de información asociada. |
+| **Operación del taller** | Desarrollo progresivo de estados y acciones de diagnóstico, reparación, cotización y entrega. |
+| **Dashboard** | Vistas de seguimiento, incluyendo el caso de trabajos terminados que todavía no tienen cargo. |
+| **Administración del servicio** | Diseño del seguimiento de autorizaciones, cargos y pagos pendientes. |
 
-Las áreas de la tabla **no equivalen a una certificación de que cada flujo está completo o desplegado en producción**. Las capacidades se han desarrollado por incrementos y deben validarse contra el estado actual del repositorio privado antes de una demostración.
+## Orqentia en imágenes
 
-## Arquitectura técnica del prototipo
+Las siguientes pantallas corresponden a **capturas del prototipo**, con información privada retirada para su presentación pública.
 
-| Capa | Tecnologías |
+### Centro de operaciones
+
+![Orqentia — dashboard del taller](screenshots/01-dashboard.png)
+
+El dashboard permite visualizar las diferentes etapas del trabajo técnico y reunir indicadores operativos y administrativos en una misma interfaz.
+
+### Preparación de cotizaciones
+
+![Orqentia — pantalla de nueva cotización](screenshots/02-nueva-cotizacion.png)
+
+Interfaz de preparación de cotizaciones con opciones para partir de una recepción o trabajar con un registro independiente.
+
+## Arquitectura y tecnologías
+
+Diseñé el prototipo separando la **interfaz, los servicios de la API y la persistencia de datos**, para poder desarrollar y probar cada componente de manera independiente.
+
+| Capa | Tecnología |
 | --- | --- |
-| Interfaz | **React, TypeScript, Vite, Tailwind CSS** |
-| API | **Python, FastAPI** |
-| Modelo de datos | **SQLAlchemy** |
-| Migraciones | **Alembic** |
-| Base de datos local | **SQLite** |
-| Calidad | Pruebas automatizadas de frontend y backend |
-| Control de versiones | Git |
+| **Frontend** | React · TypeScript · Vite · Tailwind CSS |
+| **Backend** | Python · FastAPI |
+| **Modelo de datos** | SQLAlchemy |
+| **Migraciones** | Alembic |
+| **Base de datos local** | SQLite |
+| **Desarrollo y calidad** | Git · pruebas automatizadas de frontend y backend |
 
-El diseño separa presentación, API, lógica de negocio y persistencia para facilitar cambios y pruebas.
+Como referencia del avance alcanzado, el desarrollo registró **85 pruebas de backend y 29 de frontend aprobadas**, así como migraciones de base de datos de la **0001 a la 0005**. Son resultados de una etapa del prototipo, no cifras de una ejecución realizada hoy.
 
-**Último registro técnico disponible:** hasta **85 pruebas de backend** y **29 de frontend** aprobadas, con migraciones `0001` a `0005`. Son resultados históricos del desarrollo, **no una ejecución reciente ni una auditoría independiente**.
+[Conocer las decisiones de arquitectura](docs/arquitectura.md).
 
-[Leer decisiones de arquitectura](docs/arquitectura.md).
+## Decisiones de producto
 
-## Evidencia visual
+He tomado algunas decisiones para orientar el desarrollo:
 
-Las siguientes capturas corresponden a pantallas **reales del prototipo Orqentia**, preparadas para portafolio con datos personales y operativos ocultos. No son diseños conceptuales ni imágenes generadas.
+1. **Seguir equipos, no solo órdenes:** el sistema debe conservar el historial de atención de cada activo.
+2. **Separar correctamente la información:** clientes, contactos, activos y recepciones no representan lo mismo.
+3. **Dar visibilidad a los pendientes:** quiero identificar trabajos terminados sin cargo, saldos pendientes y equipos listos para entregar.
+4. **Construir por incrementos:** prefiero incorporar funciones pequeñas, con pruebas y migraciones controladas.
+5. **Preparar el crecimiento:** la solución nace para una operación local, pero su arquitectura debe permitir evaluar otros escenarios de uso.
 
-### 1. Centro de operaciones del taller
+## Hacia dónde quiero llevarlo
 
-![Orqentia — dashboard de órdenes, reparaciones y seguimiento administrativo](screenshots/01-dashboard.png)
+Mi siguiente objetivo es **consolidar los recorridos completos del taller y probarlos en la operación diaria**. Después evaluaré necesidades de configuración, respaldo, reportes y posibles formas de distribución.
 
-El tablero reúne estados de trabajo como órdenes abiertas, por revisar, en reparación, en espera y listas para entregar. También presenta indicadores de cotizaciones, autorizaciones, cargos y pendientes de cobro. La captura documenta la interfaz, no certifica que todos los recorridos estén completos.
+También estudio, por separado, la arquitectura de un **ERP modular**. Una futura relación entre ambas iniciativas es una posibilidad de diseño, no una integración ya realizada.
 
-### 2. Preparación de cotizaciones
+[Consultar la hoja de ruta](docs/roadmap.md).
 
-![Orqentia — interfaz para crear una cotización desde una recepción](screenshots/02-nueva-cotizacion.png)
+## Sobre este repositorio
 
-Pantalla para iniciar una cotización, con opciones desde una recepción o sin recepción y búsqueda/selección del registro correspondiente.
+Aquí comparto el diseño del producto, su arquitectura y algunas pantallas de desarrollo. El código fuente y los datos operativos se mantienen en repositorios de trabajo privados.
 
-> **Privacidad:** las capturas públicas fueron revisadas y modificadas para ocultar identificadores personales y datos operativos. Los valores visibles no deben interpretarse como métricas comerciales públicas.
-
-## Decisiones de producto e ingeniería
-
-1. **Flujo centrado en la operación:** cada equipo debe poder seguirse desde su ingreso hasta su entrega.
-2. **Separación de entidades:** clientes, contactos, activos y recepciones tienen responsabilidades distintas.
-3. **Visibilidad de excepciones:** trabajos terminados sin cargo y saldos pendientes merecen seguimiento específico.
-4. **Desarrollo incremental:** incorporar módulos por etapas, con migraciones y pruebas.
-5. **Privacidad:** la presentación pública excluye código y datos reales del negocio.
-
-## Evolución prevista
-
-El sistema puede evolucionar como producto independiente o, después de una evaluación arquitectónica, integrarse con un futuro **mini ERP modular**. **Esa integración no está implementada ni decidida.** Tampoco se presenta NestJS o PostgreSQL como parte del stack actual.
-
-[Consultar hoja de ruta](docs/roadmap.md).
-
-## Competencias que ilustra
-
-- Análisis y modelado de procesos empresariales.
-- Desarrollo full-stack con React/TypeScript y FastAPI.
-- Diseño de entidades y persistencia relacional.
-- Migraciones, pruebas y evolución incremental.
-- Diseño de tableros y experiencia operativa.
-- Delimitación del alcance entre prototipo, producto y plataforma futura.
-
-## Privacidad y uso
-
-Este repositorio es un **showcase documental**, no una distribución del software. No incluye credenciales, bases de datos, código privado, registros de clientes ni una licencia de explotación sobre componentes no publicados.
-
-[Política de publicación y privacidad](docs/privacidad.md).
+[Política de privacidad y publicación](docs/privacidad.md).
 
 ---
 
-**Autor:** [Isaías Solís](https://github.com/isaiassolis) · [Portafolio en GitHub](https://github.com/isaiassolis)
+<p align="center"><strong>Software pensado para organizar el trabajo real de un taller.</strong></p>
+<p align="center"><a href="https://github.com/isaiassolis">Isaías Solís · Portafolio profesional</a></p>
